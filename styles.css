@@ -1,0 +1,657 @@
+@font-face {
+    font-family: Bremlin;
+    src: url('Bremlin.otf');
+}
+
+:root {
+    --graphite: #292B2D;
+    --grey: #e2dccc;
+    --red: #e64141;
+    --yellow: #ffb10a;
+    --blue: #3e72db;
+    --graphite: #292b2d;
+
+    --page-padding: 7vw;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--grey);
+    color: var(--graphite);
+    font-family: Helvetica;
+}
+
+.bg-static {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('bgstatic1.png');
+    z-index: 999999;
+    pointer-events: none;
+    margin: 0;
+    padding: 0;
+    animation: static 0.1s linear infinite;
+    opacity: 0.1;
+}
+
+@keyframes static {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+.bg-staticline {
+    position: fixed;
+    width: 100vw;
+    height: 15vh;
+    background-image: url('bgstatic1.png');
+    z-index: 999999;
+    pointer-events: none;
+    margin: 0;
+    padding: 0;
+    animation: staticline 5s linear infinite;
+    opacity: 0.1;
+}
+
+@keyframes staticline {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(100vh);
+    }
+    100% {
+        transform: translateY(120vh);
+    }
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.section {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    padding: 0 7%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: var(--graphite);
+
+    z-index: 1000;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.navbar.scrolled {
+    background: var(--graphite);
+    border-bottom-color: transparent;
+}
+
+.navbar.scrolled .logo,
+.navbar.scrolled .nav-links a {
+    color: var(--grey);
+}
+
+.logo {
+    color: var(--grey);
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    text-decoration: none;
+}
+
+.logo span {
+    color: var(--yellow);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-links a {
+    color: var(--grey);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: var(--yellow);
+}
+
+
+/* ========================================
+   SECTION 1 — HERO
+======================================== */
+
+.hero-section {
+    min-height: 100vh;
+    min-height: 100svh;
+
+    display: flex;
+    align-items: center;
+
+    padding: 10vh var(--page-padding);
+
+    background: var(--grey);
+    background-image: url(bg1.png);
+    isolation: isolate;
+}
+
+.hero-title {
+    position: relative;
+    z-index: 3;
+
+    width: 100%;
+    margin: 0;
+
+    font-size: clamp(48px, 9.5vw, 150px);
+    line-height: 0.87;
+    color: var(--yellow);
+    font-family: Bremlin;
+    text-shadow: -5px -5px 0 var(--red), 0px  -5px 0 var(--red), 5px -5px 0 var(--red), 5px  0px 0 var(--red), 5px 5px 0 var(--red), 0px  5px 0 var(--red), -5px 5px 0 var(--red), -5px  0px 0 var(--red), 12px 12px 0 var(--blue);
+
+    overflow-wrap: anywhere;
+}
+
+/* Left image: attached to the bottom-left corner */
+
+.hero-image {
+    position: absolute;
+    z-index: 1;
+
+    object-fit: contain;
+    pointer-events: none;
+}
+
+.hero-image-left {
+    left: 0;
+    bottom: 0;
+
+    width: min(36vw, 560px);
+    height: 58%;
+
+    object-position: left bottom;
+}
+
+/* Right image: centered vertically and pushed right */
+
+.hero-image-right {
+    right: 2vw;
+    top: 50%;
+
+    width: min(60vw, 600px);
+    height: 70%;
+
+    object-position: right center;
+    transform: translateY(-50%);
+}
+
+
+/* ========================================
+   SECTION 2 — QUOTE
+======================================== */
+
+.quote-section {
+    min-height: 80vh;
+    min-height: 80svh;
+
+    display: grid;
+    grid-template-columns: 0.8fr 1.7fr;
+    gap: 5vw;
+
+    align-items: stretch;
+
+    padding: 10vh var(--page-padding);
+
+    background: var(--blue);
+    background-image: url(bg4.png);
+}
+
+/* Left column */
+
+.quote-image-column {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quote-main-image {
+    width: 100%;
+
+    object-fit: contain;
+    object-position: center;
+}
+
+/* Right area: quote / text / quote */
+
+.quote-content {
+    min-width: 0;
+
+    display: grid;
+    grid-template-columns: 0.25fr 1fr 0.25fr;
+    gap: 1.5vw;
+
+    align-items: stretch;
+}
+
+.quote-mark {
+    align-self: start;
+    width: 100%;
+}
+
+.quote-mark img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.quote-mark-right img {
+    transform: none;
+}
+
+.quote-text {
+    align-self: center;
+    min-width: 0;
+    padding: 3vh 0;
+}
+
+.section-label {
+    margin: 0 0 2vh;
+
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(10px, 0.9vw, 13px);
+    line-height: 1.5;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.quote-text h2,
+.tv-description h2,
+.closing-content h2 {
+    margin: 0 0 3vh;
+
+    font-size: clamp(32px, 4.5vw, 68px);
+    line-height: 0.98;
+    letter-spacing: -0.06em;
+}
+
+.quote-text p:not(.section-label),
+.tv-description p:not(.section-label),
+.closing-content p:not(.section-label) {
+    max-width: 620px;
+
+    font-size: clamp(14px, 1.25vw, 18px);
+    line-height: 1.7;
+}
+
+
+/* ========================================
+   SECTION 3 — TV WALL
+======================================== */
+
+.tv-section {
+    min-height: 100vh;
+    min-height: 100svh;
+
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    align-items: stretch;
+
+    background: var(--graphite);
+    color: var(--grey);
+}
+
+/* Left column */
+
+.tv-description {
+    align-self: center;
+    padding: 10vh 5vw 10vh var(--page-padding);
+}
+
+.tv-description .section-label {
+    color: var(--yellow);
+}
+
+.tv-description h2 {
+    font-size: clamp(36px, 5vw, 76px);
+}
+
+.tv-description p:not(.section-label) {
+    max-width: 520px;
+}
+
+/* Right column: three TVs per row */
+
+.tv-column {
+    min-width: 0;
+    min-height: 100%;
+
+    padding: 0;
+    overflow: hidden;
+}
+
+.tv-grid {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    align-content: start;
+    gap: 0;
+}
+
+/* Each TV uses a fixed 16:9 ratio */
+
+.tv {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 12;
+
+    overflow: hidden;
+    background: #202123;
+}
+
+/* Both images have exactly the same size */
+
+.tv img {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+/* Base image */
+
+.tv-base {
+    z-index: 1;
+    filter: grayscale(1);
+}
+
+/* Hover image sits on top */
+
+.tv-overlay {
+    z-index: 2;
+
+    opacity: 0;
+    transition: opacity 3s ease;
+
+    cursor: pointer;
+}
+
+/* Reveal quickly when hovered */
+
+.tv:hover .tv-overlay,
+.tv:focus-within .tv-overlay {
+    opacity: 1;
+    transition-duration: 0.2s;
+}
+
+
+/* ========================================
+   SECTION 4 — CLOSING
+======================================== */
+
+.closing-section {
+    min-height: 80vh;
+    min-height: 80svh;
+
+    display: flex;
+    align-items: flex-start;
+
+    padding: 12vh var(--page-padding) 0;
+
+    background: var(--red);
+    color: var(--graphite);
+    isolation: isolate;
+    background-image: url(bg2.png);
+}
+
+.closing-content {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 900px;
+
+    padding-bottom: 30vh;
+}
+
+.closing-content .section-label {
+    color: var(--grey);
+}
+
+.closing-content h2 {
+    font-size: clamp(40px, 7vw, 100px);
+}
+
+.closing-content p:not(.section-label) {
+    max-width: 600px;
+}
+
+/* Image spans the full width and sticks to the bottom */
+
+.closing-image {
+    position: absolute;
+    z-index: 1;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: auto;
+    max-width: none;
+
+    object-fit: contain;
+    object-position: center bottom;
+
+    pointer-events: none;
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 900px) {
+    :root {
+        --page-padding: 5vw;
+    }
+
+    .hero-title {
+        font-size: clamp(48px, 10vw, 90px);
+    }
+
+    .hero-image-left {
+        width: 40vw;
+        height: 48%;
+    }
+
+    .hero-image-right {
+        width: 36vw;
+        height: 58%;
+    }
+
+    .quote-section {
+        grid-template-columns: 0.65fr 1.35fr;
+        gap: 3vw;
+        padding-top: 8vh;
+        padding-bottom: 8vh;
+    }
+
+    .quote-content {
+        grid-template-columns: 0.12fr 1fr 0.12fr;
+        gap: 1vw;
+    }
+
+    .tv-section {
+        grid-template-columns: 0.8fr 1.2fr;
+    }
+
+    .tv-description {
+        padding-left: var(--page-padding);
+        padding-right: 3vw;
+    }
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+    .hero-section {
+        min-height: 85svh;
+        padding-top: 8vh;
+        padding-bottom: 8vh;
+    }
+
+    .hero-title {
+        font-size: clamp(42px, 11vw, 66px);
+        overflow-wrap: normal;
+    }
+
+    .hero-image-left {
+        width: 48vw;
+        height: 36%;
+    }
+
+    .hero-image-right {
+        right: -7vw;
+        width: 42vw;
+        height: 45%;
+    }
+
+    .quote-section {
+        grid-template-columns: 1fr;
+        gap: 4vh;
+        padding: 8vh var(--page-padding);
+    }
+
+    .quote-image-column {
+        min-height: 25vh;
+    }
+
+    .quote-main-image {
+        width: 65%;
+        height: 25vh;
+    }
+
+    .quote-content {
+        grid-template-columns: 0.12fr 1fr 0.12fr;
+        gap: 3vw;
+    }
+
+    .quote-text {
+        padding: 0;
+    }
+
+    .quote-text h2 {
+        font-size: clamp(32px, 8vw, 46px);
+    }
+
+    .tv-section {
+        grid-template-columns: 1fr;
+    }
+
+    .tv-description {
+        padding: 8vh var(--page-padding);
+    }
+
+    .tv-description h2 {
+        font-size: clamp(38px, 9vw, 58px);
+    }
+
+    .tv-column {
+        min-height: 55vh;
+    }
+
+    /* Still exactly three TVs in every row */
+    .tv-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .closing-section {
+        min-height: 75svh;
+        padding: 9vh var(--page-padding) 0;
+    }
+
+    .closing-content {
+        padding-bottom: 28vh;
+    }
+
+    .closing-content h2 {
+        font-size: clamp(38px, 9vw, 60px);
+    }
+}
+
+
+/* Make the TV section the same height as the hero */
+.tv-section {
+    height: 100vh;
+    height: 100svh;
+    min-height: 0;
+    max-height: 100svh;
+
+    overflow: hidden;
+    align-items: stretch;
+}
+
+.tv-description,
+.tv-column {
+    min-height: 0;
+    height: 100%;
+}
+
+.tv-column {
+    overflow: hidden;
+}
+
+.tv-grid {
+    align-content: start;
+}
+
+/* Keep the same height on mobile */
+@media (max-width: 600px) {
+    .tv-section {
+        height: 100vh;
+        height: 100svh;
+        min-height: 0;
+        max-height: 100svh;
+    }
+
+    .tv-column {
+        min-height: 0;
+        height: 100%;
+    }
+}
